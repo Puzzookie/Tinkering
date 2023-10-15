@@ -21,8 +21,8 @@ exports.handler = async (event, context) => {
 
     // Create a response object with custom headers
     const headers = {
-      "Access-Control-Allow-Origin": "https://emailauth-e6005.web.app",
-      // Add any other headers you need
+        "Access-Control-Allow-Origin": "https://emailauth-e6005.web.app",
+        "Cache-Control": "public, max-age=180" // Set max-age to 180 seconds (3 minutes)
     };
 
     return {
