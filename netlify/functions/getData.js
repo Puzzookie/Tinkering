@@ -1,5 +1,3 @@
-// netlify/functions/getData.js
-
 const needle = require('needle');
 
 exports.handler = async (event, context) => {
@@ -20,9 +18,17 @@ exports.handler = async (event, context) => {
     }
 
     const data = response.body;
+
+    // Create a response object with custom headers
+    const headers = {
+      "Access-Control-Allow-Origin": "https://emailauth-e6005.web.app/",
+      // Add any other headers you need
+    };
+
     return {
       statusCode: 200,
       body: JSON.stringify(data),
+      headers, // Include custom headers in the response
     };
   } catch (error) {
     return {
