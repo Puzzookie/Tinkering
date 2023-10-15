@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
 
     // Create a response object with custom headers
     const headers = {
-      "Access-Control-Allow-Origin": "https://emailauth-e6005.web.app/",
+      "Access-Control-Allow-Origin": "https://emailauth-e6005.web.app",
       // Add any other headers you need
     };
 
