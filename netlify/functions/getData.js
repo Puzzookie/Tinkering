@@ -1,6 +1,6 @@
 // netlify/functions/getData.js
 
-const fetch = require('node-fetch'); // Node.js equivalent of the Fetch API
+const needle = require('needle');
 
 exports.handler = async (event, context) => {
   const { FIREBASE_DB_URL } = process.env;
@@ -13,12 +13,13 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const response = await fetch(`${FIREBASE_DB_URL}.json`);
-    if (!response.ok) {
-      throw Error('Failed to retrieve data from Firebase.');
+    const response = await needle('get', `${FIREBASE_DB_URL}.json`);
+
+    if (response.statusCode !== 200) {
+      throw new Error('Failed to retrieve data from Firebase.');
     }
 
-    const data = await response.json();
+    const data = response.body;
     return {
       statusCode: 200,
       body: JSON.stringify(data),
